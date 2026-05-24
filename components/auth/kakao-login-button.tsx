@@ -11,11 +11,27 @@ import { createClient } from "@/lib/supabase/client";
 export function KakaoLoginButton({
   next,
   label = "카카오로 로그인",
+  disabled = false,
 }: {
   next?: string;
   label?: string;
+  // 카카오 이메일 동의항목(KOE004) 보류 동안 "준비 중"으로 비활성화.
+  // 이메일 동의가 풀리면 이 prop 만 제거하면 정상 동작한다.
+  disabled?: boolean;
 }) {
   const [loading, setLoading] = useState(false);
+
+  if (disabled) {
+    return (
+      <Button
+        type="button"
+        disabled
+        className="w-full bg-[#FEE500] text-[#191600] hover:bg-[#FADA0A]"
+      >
+        {label} (준비 중)
+      </Button>
+    );
+  }
 
   async function handleLogin() {
     setLoading(true);

@@ -4,7 +4,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import type { Database } from "@/types/database";
 
 // 로그인이 필요한 사장님 관리 경로
-const PROTECTED_PREFIXES = ["/dashboard", "/products", "/orders", "/settings"];
+const PROTECTED_PREFIXES = ["/dashboard", "/onboarding", "/products", "/orders", "/settings"];
 // 이미 로그인했다면 갈 필요 없는 경로
 const AUTH_ROUTES = ["/login", "/signup"];
 

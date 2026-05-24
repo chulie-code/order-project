@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { EmailAuthForm } from "@/components/auth/email-auth-form";
 import { KakaoLoginButton } from "@/components/auth/kakao-login-button";
 
 export default function LoginPage({
@@ -11,7 +12,7 @@ export default function LoginPage({
     <div className="space-y-6">
       <div className="space-y-1 text-center">
         <h1 className="text-2xl font-bold">사장님 로그인</h1>
-        <p className="text-sm text-muted-foreground">카카오 계정으로 간편하게 시작하세요</p>
+        <p className="text-sm text-muted-foreground">이메일로 로그인하세요</p>
       </div>
 
       {searchParams.error && (
@@ -20,7 +21,15 @@ export default function LoginPage({
         </p>
       )}
 
-      <KakaoLoginButton next={searchParams.next} label="카카오로 로그인" />
+      <EmailAuthForm mode="login" next={searchParams.next} />
+
+      <div className="flex items-center gap-3 text-xs text-muted-foreground">
+        <span className="h-px flex-1 bg-border" />
+        또는
+        <span className="h-px flex-1 bg-border" />
+      </div>
+
+      <KakaoLoginButton next={searchParams.next} disabled />
 
       <p className="text-center text-sm text-muted-foreground">
         처음이신가요?{" "}
