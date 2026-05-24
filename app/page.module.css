@@ -331,6 +331,47 @@
   color: var(--cocoa);
   max-width: 40ch;
 }
+.benefits {
+  list-style: none;
+  margin: 28px auto 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+  text-align: left;
+  max-width: 460px;
+}
+.benefit {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: var(--cream-deep);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 16px 18px;
+}
+.benefitMark {
+  flex: 0 0 auto;
+  width: 26px;
+  height: 26px;
+  margin-top: 2px;
+  border-radius: 100px;
+  background: var(--berry);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 0.85rem;
+}
+.benefitText strong {
+  display: block;
+  font-family: var(--font-gowun-batang), serif;
+  font-size: 1rem;
+  color: var(--espresso);
+  margin-bottom: 2px;
+}
+.benefitText span {
+  font-size: 0.88rem;
+  color: var(--cocoa);
+}
 .wlForm {
   margin-top: 36px;
   display: grid;

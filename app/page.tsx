@@ -186,6 +186,29 @@ export default function Home() {
             정식 오픈 전, 베타로 무료 이용하고 피드백을 들려주실 사장님을 모십니다. 신청하시면 오픈
             소식을 가장 먼저 알려드릴게요.
           </p>
+          <ul className={styles.benefits}>
+            <li className={styles.benefit}>
+              <span className={styles.benefitMark}>✓</span>
+              <span className={styles.benefitText}>
+                <strong>무료 이용</strong>
+                <span>정식 오픈 전까지 모든 기능을 무료로 써보실 수 있어요.</span>
+              </span>
+            </li>
+            <li className={styles.benefit}>
+              <span className={styles.benefitMark}>✓</span>
+              <span className={styles.benefitText}>
+                <strong>1:1 셋업 지원</strong>
+                <span>메뉴 등록부터 주문 페이지 세팅까지 1:1로 도와드려요.</span>
+              </span>
+            </li>
+            <li className={styles.benefit}>
+              <span className={styles.benefitMark}>✓</span>
+              <span className={styles.benefitText}>
+                <strong>의견을 제품에 반영</strong>
+                <span>주신 피드백을 우선순위로 제품에 직접 반영합니다.</span>
+              </span>
+            </li>
+          </ul>
           <WaitlistForm />
         </div>
       </section>
