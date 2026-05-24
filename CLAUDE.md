@@ -95,6 +95,9 @@ types/             # 공유 타입 정의
 
 ## 현재 진행 단계
 
+- [x] (출시 전) 랜딩 페이지 + 베타 사전 신청(waitlist)
+  - app/page.tsx (CSS Module + next/font: Fraunces·Gowun Batang·Gowun Dodum)
+  - 사전 신청 폼 → Server Action(app/actions.ts) → Supabase waitlist 테이블
 - [ ] 1주차: 프로젝트 셋업, Supabase 연결, 카카오 로그인, 사장님 가입·가게등록
   - [x] 프로젝트 셋업 (Next.js 14, Tailwind, shadcn/ui, ESLint·Prettier, 폴더 구조)
   - [x] Supabase 연결 (서버/클라이언트/관리자 클라이언트, 세션 미들웨어, DB 타입)
