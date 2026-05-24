@@ -26,7 +26,7 @@ const gowunDodum = Gowun_Dodum({
 });
 
 export const metadata: Metadata = {
-  title: "오븐레터 — 디저트 사장님을 위한 예약·선결제",
+  title: "오더레터 — 디저트 사장님을 위한 예약·선결제",
   description:
     "DM으로 주문받느라 지친 디저트 사장님을 위한 예약·선결제 페이지. 인스타 프로필에 링크 한 줄로 노쇼와 밤늦은 주문 DM을 끝내세요.",
 };
@@ -38,7 +38,7 @@ export default function Home() {
     <div className={`${fontVars} ${styles.page}`}>
       <nav>
         <div className={styles.wordmark}>
-          오븐레터<span className={styles.dot}>.</span>
+          오더레터<span className={styles.dot}>.</span>
         </div>
         <a href="#waitlist" className={styles.navCta}>
           사전 신청
@@ -109,7 +109,7 @@ export default function Home() {
       </section>
 
       <section className={styles.block}>
-        <div className={styles.secLabel}>오븐레터가 해결해요</div>
+        <div className={styles.secLabel}>오더레터가 해결해요</div>
         <h2 className={`${styles.secTitle} ${styles.kserif}`}>주문받는 일, 이제 자동으로</h2>
         <div className={styles.featList}>
           <div className={styles.feat}>
@@ -191,9 +191,9 @@ export default function Home() {
       </section>
 
       <footer>
-        <div>오븐레터 — 디저트 사장님을 위한 예약·선결제</div>
+        <div>오더레터 — 디저트 사장님을 위한 예약·선결제</div>
         <div>
-          © 2026 오븐레터 · 문의 <a href="mailto:choo4925@gmail.com">choo4925@gmail.com</a>
+          © 2026 오더레터 · 문의 <a href="mailto:choo4925@gmail.com">choo4925@gmail.com</a>
         </div>
       </footer>
     </div>
