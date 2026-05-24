@@ -17,17 +17,24 @@ export function WaitlistForm() {
     setStatus("submitting");
     setErrorMsg("");
 
-    const result = await submitWaitlist({
-      name: String(fd.get("name") ?? ""),
-      phone: String(fd.get("phone") ?? ""),
-      insta: String(fd.get("insta") ?? ""),
-    });
+    try {
+      const result = await submitWaitlist({
+        name: String(fd.get("name") ?? ""),
+        phone: String(fd.get("phone") ?? ""),
+        insta: String(fd.get("insta") ?? ""),
+      });
 
-    if (result.ok) {
-      setStatus("success");
-    } else {
+      if (result.ok) {
+        setStatus("success");
+      } else {
+        setStatus("error");
+        setErrorMsg(result.error ?? "신청에 실패했어요. 잠시 후 다시 시도해주세요.");
+      }
+    } catch (err) {
+      // 서버 액션이 거부되거나 네트워크가 끊겨도 "신청 중…"에 멈추지 않도록 한다.
+      console.error("[waitlist] 제출 오류:", err);
       setStatus("error");
-      setErrorMsg(result.error ?? "신청에 실패했어요. 잠시 후 다시 시도해주세요.");
+      setErrorMsg("네트워크 상태를 확인하고 다시 시도해주세요.");
     }
   }
 

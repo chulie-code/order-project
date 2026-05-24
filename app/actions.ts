@@ -21,17 +21,23 @@ export async function submitWaitlist(input: {
     return { ok: false, error: "연락처를 다시 확인해주세요." };
   }
 
-  const supabase = createClient();
-  const { error } = await supabase.from("waitlist").insert({
-    name,
-    phone,
-    insta: insta || null,
-  });
+  try {
+    const supabase = createClient();
+    const { error } = await supabase.from("waitlist").insert({
+      name,
+      phone,
+      insta: insta || null,
+    });
 
-  if (error) {
-    console.error("[waitlist] insert 실패:", error.message);
+    if (error) {
+      console.error("[waitlist] insert 실패:", error.message);
+      return { ok: false, error: "신청에 실패했어요. 잠시 후 다시 시도해주세요." };
+    }
+
+    return { ok: true };
+  } catch (err) {
+    // 환경변수 누락·네트워크 오류 등으로 예외가 나도 throw 하지 않고 결과를 돌려준다.
+    console.error("[waitlist] 예외 발생:", err);
     return { ok: false, error: "신청에 실패했어요. 잠시 후 다시 시도해주세요." };
   }
-
-  return { ok: true };
 }
