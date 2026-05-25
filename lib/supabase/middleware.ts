@@ -4,7 +4,15 @@ import { NextResponse, type NextRequest } from "next/server";
 import type { Database } from "@/types/database";
 
 // 로그인이 필요한 사장님 관리 경로
-const PROTECTED_PREFIXES = ["/dashboard", "/onboarding", "/products", "/orders", "/settings"];
+// (/debug 는 Supabase 연결 진단 등 내부용 페이지 — 비로그인 노출 금지)
+const PROTECTED_PREFIXES = [
+  "/dashboard",
+  "/onboarding",
+  "/products",
+  "/orders",
+  "/settings",
+  "/debug",
+];
 // 이미 로그인했다면 갈 필요 없는 경로
 const AUTH_ROUTES = ["/login", "/signup"];
 
