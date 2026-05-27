@@ -69,12 +69,12 @@ export function WaitlistForm() {
         required
         disabled={submitting}
       />
-      <label htmlFor="insta">인스타그램 (선택)</label>
+      <label htmlFor="insta">SNS · 판매 채널 (선택)</label>
       <input
         id="insta"
         name="insta"
         type="text"
-        placeholder="@your_bakery"
+        placeholder="인스타 @아이디 또는 채널 주소"
         disabled={submitting}
       />
       <button type="submit" disabled={submitting}>

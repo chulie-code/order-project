@@ -15,7 +15,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "디저트 예약·주문",
-  description: "인스타로 주문받는 디저트 베이커리를 위한 예약·선결제 서비스",
+  description: "여러 채널로 주문받는 디저트 베이커리를 위한 예약·선결제 서비스",
 };
 
 export default function RootLayout({

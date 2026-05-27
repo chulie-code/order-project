@@ -28,7 +28,7 @@ const gowunDodum = Gowun_Dodum({
 export const metadata: Metadata = {
   title: "오더레터 — 디저트 사장님을 위한 예약·선결제",
   description:
-    "DM으로 주문받느라 지친 디저트 사장님을 위한 예약·선결제 페이지. 인스타 프로필에 링크 한 줄로 노쇼와 밤늦은 주문 DM을 끝내세요.",
+    "흩어진 주문 받느라 지친 디저트 사장님을 위한 예약·선결제 페이지. 어디서 주문받든 링크 하나로 노쇼와 밤늦은 주문 문의를 끝내세요.",
 };
 
 export default function Home() {
@@ -50,15 +50,15 @@ export default function Home() {
           홈베이킹 · 케이크 공방 사장님 전용
         </span>
         <h1 className={`${styles.reveal} ${styles.d2}`}>
-          DM으로 주문받느라
+          흩어진 주문 받느라
           <br />
           지친 사장님을 위한
           <br />
           <em>예약·선결제 페이지</em>
         </h1>
         <p className={`${styles.sub} ${styles.reveal} ${styles.d3}`}>
-          인스타 프로필에 링크 한 줄. 고객이 직접 픽업 시간을 고르고 미리 결제해요. 노쇼도, 밤늦은
-          주문 DM도 이제 그만.
+          어디서 주문받든 링크 하나로. 고객이 직접 픽업 시간을 고르고 미리 결제해요. 노쇼도, 밤늦은
+          주문 문의도 이제 그만.
         </p>
         <div className={`${styles.heroCtaRow} ${styles.reveal} ${styles.d4}`}>
           <a href="#waitlist" className={styles.btnPrimary}>
@@ -84,11 +84,11 @@ export default function Home() {
 
       <section className={`${styles.block} ${styles.pain}`}>
         <div className={styles.secLabel}>이런 적 있으시죠</div>
-        <h2 className={`${styles.secTitle} ${styles.kserif}`}>매번 똑같은 DM, 매번 같은 고민</h2>
+        <h2 className={`${styles.secTitle} ${styles.kserif}`}>매번 똑같은 주문 문의, 매번 같은 고민</h2>
         <div className={styles.painGrid}>
           <div className={styles.painCard}>
             <div className={styles.ic}>💬</div>
-            <h3>밤늦게 쏟아지는 주문 DM</h3>
+            <h3>밤늦게 쏟아지는 주문 문의</h3>
             <p>
               {
                 '"이거 언제 픽업돼요?" "옵션 뭐 있어요?" 같은 질문에 하루 종일 답장하느라 정작 베이킹할 시간이 없어요.'
@@ -148,8 +148,8 @@ export default function Home() {
             <div>
               <h3>레터링·픽업시간 깔끔하게</h3>
               <p>
-                레터링 문구, 픽업 시간, 선물 받는 분 정보까지 폼으로 정리. DM으로 주고받던 걸 한
-                번에.
+                레터링 문구, 픽업 시간, 선물 받는 분 정보까지 폼으로 정리. 여기저기 채팅으로 주고받던
+                걸 한 번에.
               </p>
             </div>
           </div>
@@ -168,7 +168,7 @@ export default function Home() {
           <div className={styles.step}>
             <div className={styles.sN}>2</div>
             <h3>링크 공유</h3>
-            <p>내 전용 주소를 인스타 프로필에 한 줄 붙여넣기.</p>
+            <p>내 전용 주소를 어느 채널 프로필이든 한 줄 붙여넣기.</p>
           </div>
           <div className={styles.step}>
             <div className={styles.sN}>3</div>
