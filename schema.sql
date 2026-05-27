@@ -96,7 +96,7 @@ create table waitlist (
   id uuid primary key default uuid_generate_v4(),
   name text not null,                        -- 성함 / 가게 이름
   phone text not null,                       -- 연락처
-  insta text,                                -- 인스타그램 (선택)
+  insta text,                                -- SNS·판매 채널 (선택)
   created_at timestamptz default now()
 );
 
