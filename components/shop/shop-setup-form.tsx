@@ -12,6 +12,8 @@ import { Textarea } from "@/components/ui/textarea";
 import {
   DAYS,
   defaultBusinessHours,
+  formatPhone,
+  formatSlug,
   shopSetupSchema,
   type ShopSetupValues,
 } from "@/lib/validations/shop";
@@ -25,6 +27,8 @@ export function ShopSetupForm() {
     register,
     handleSubmit,
     watch,
+    setValue,
+    getValues,
     formState: { errors, isSubmitting },
   } = useForm<ShopSetupValues>({
     resolver: zodResolver(shopSetupSchema),
@@ -40,6 +44,18 @@ export function ShopSetupForm() {
   const slug = watch("slug");
   const businessHours = watch("businessHours");
   const slugPreview = (slug || "your-shop").toLowerCase();
+
+  // 입력 중 실시간 정리: register 의 onChange 를 가로채 값을 가공한 뒤 넘긴다.
+  const slugField = register("slug");
+  const phoneField = register("phone");
+
+  // 월요일 영업시간(휴무 여부 포함)을 화~금에 그대로 복사한다.
+  function applyWeekdays() {
+    const mon = getValues("businessHours.mon");
+    (["tue", "wed", "thu", "fri"] as const).forEach((key) => {
+      setValue(`businessHours.${key}`, { ...mon }, { shouldValidate: true, shouldDirty: true });
+    });
+  }
 
   // slug 실시간 중복 체크 (디바운스 400ms). 형식이 유효할 때만 서버 조회.
   useEffect(() => {
@@ -85,7 +101,16 @@ export function ShopSetupForm() {
 
       <div className="space-y-1.5">
         <Label htmlFor="slug">주문 페이지 주소</Label>
-        <Input id="slug" placeholder="todays-cake" autoCapitalize="none" {...register("slug")} />
+        <Input
+          id="slug"
+          placeholder="todays-cake"
+          autoCapitalize="none"
+          {...slugField}
+          onChange={(e) => {
+            e.target.value = formatSlug(e.target.value);
+            void slugField.onChange(e);
+          }}
+        />
         <p className="text-xs text-muted-foreground">
           고객이 접속할 주소예요: <span className="font-mono">/{slugPreview}</span> · 영문 소문자,
           숫자, 하이픈(-)
@@ -103,7 +128,17 @@ export function ShopSetupForm() {
 
       <div className="space-y-1.5">
         <Label htmlFor="phone">전화번호 (선택)</Label>
-        <Input id="phone" type="tel" placeholder="010-1234-5678" {...register("phone")} />
+        <Input
+          id="phone"
+          type="tel"
+          inputMode="numeric"
+          placeholder="010-1234-5678"
+          {...phoneField}
+          onChange={(e) => {
+            e.target.value = formatPhone(e.target.value);
+            void phoneField.onChange(e);
+          }}
+        />
         {errors.phone && <p className="text-sm text-destructive">{errors.phone.message}</p>}
       </div>
 
@@ -119,7 +154,16 @@ export function ShopSetupForm() {
       </div>
 
       <fieldset className="space-y-2">
-        <legend className="mb-1 text-sm font-medium">영업시간</legend>
+        <legend className="mb-1 flex w-full flex-wrap items-center justify-between gap-2 text-sm font-medium">
+          <span>영업시간</span>
+          <button
+            type="button"
+            onClick={applyWeekdays}
+            className="font-normal text-xs text-primary underline-offset-2 hover:underline"
+          >
+            월요일과 같게 (화~금)
+          </button>
+        </legend>
         {DAYS.map(({ key, label }) => {
           const closed = businessHours?.[key]?.closed;
           const closeError = errors.businessHours?.[key]?.close?.message;

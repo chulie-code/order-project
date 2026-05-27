@@ -106,3 +106,29 @@ export function toStoredBusinessHours(
   }
   return result;
 }
+
+// 전화번호 입력 중 자동 하이픈. 서울 지역번호(02)와 그 외 3자리 국번을 구분.
+// 예: 01012345678 → 010-1234-5678, 0212345678 → 02-1234-5678
+export function formatPhone(value: string): string {
+  const digits = value.replace(/\D/g, "").slice(0, 11);
+  if (digits.startsWith("02")) {
+    if (digits.length <= 2) return digits;
+    if (digits.length <= 5) return `${digits.slice(0, 2)}-${digits.slice(2)}`;
+    if (digits.length <= 9) return `${digits.slice(0, 2)}-${digits.slice(2, 5)}-${digits.slice(5)}`;
+    return `${digits.slice(0, 2)}-${digits.slice(2, 6)}-${digits.slice(6)}`;
+  }
+  if (digits.length <= 3) return digits;
+  if (digits.length <= 7) return `${digits.slice(0, 3)}-${digits.slice(3)}`;
+  if (digits.length <= 10) return `${digits.slice(0, 3)}-${digits.slice(3, 6)}-${digits.slice(6)}`;
+  return `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(7)}`;
+}
+
+// slug 입력 중 자동 정리: 소문자화, 공백→하이픈, 허용 문자 외 제거, 연속 하이픈 합치기.
+// (앞뒤 하이픈 검증은 제출 시 shopSetupSchema 가 담당)
+export function formatSlug(value: string): string {
+  return value
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^a-z0-9-]/g, "")
+    .replace(/-+/g, "-");
+}
