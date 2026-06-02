@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Gowun_Batang, Gowun_Dodum } from "next/font/google";
 
-import { WaitlistForm } from "@/components/waitlist/waitlist-form";
+import { LeadForm } from "@/components/leads/lead-form";
 
 import styles from "./page.module.css";
 
@@ -40,7 +40,7 @@ export default function Home() {
         <div className={styles.wordmark}>
           오더레터<span className={styles.dot}>.</span>
         </div>
-        <a href="#waitlist" className={styles.navCta}>
+        <a href="#leads" className={styles.navCta}>
           사전 신청
         </a>
       </nav>
@@ -61,7 +61,7 @@ export default function Home() {
           주문 문의도 이제 그만.
         </p>
         <div className={`${styles.heroCtaRow} ${styles.reveal} ${styles.d4}`}>
-          <a href="#waitlist" className={styles.btnPrimary}>
+          <a href="#leads" className={styles.btnPrimary}>
             베타 무료로 먼저 써보기
           </a>
           <span className={styles.heroNote}>정식 오픈 전 신청한 사장님께 무료 혜택 ✦</span>
@@ -178,7 +178,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className={`${styles.block} ${styles.waitlist}`} id="waitlist">
+      <section className={`${styles.block} ${styles.waitlist}`} id="leads">
         <div className={styles.wlInner}>
           <div className={styles.secLabel}>사전 신청</div>
           <h2 className={`${styles.secTitle} ${styles.kserif}`}>먼저 써볼 디저트 사장님을 찾아요</h2>
@@ -209,7 +209,7 @@ export default function Home() {
               </span>
             </li>
           </ul>
-          <WaitlistForm />
+          <LeadForm />
         </div>
       </section>
 

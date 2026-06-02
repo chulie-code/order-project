@@ -233,25 +233,25 @@ export interface Database {
           },
         ];
       };
-      waitlist: {
+      leads: {
         Row: {
           id: string;
           name: string;
-          phone: string;
+          email: string;
           insta: string | null;
           created_at: string;
         };
         Insert: {
           id?: string;
           name: string;
-          phone: string;
+          email: string;
           insta?: string | null;
           created_at?: string;
         };
         Update: {
           id?: string;
           name?: string;
-          phone?: string;
+          email?: string;
           insta?: string | null;
           created_at?: string;
         };
@@ -270,4 +270,4 @@ export type Shop = Database["public"]["Tables"]["shops"]["Row"];
 export type Product = Database["public"]["Tables"]["products"]["Row"];
 export type Order = Database["public"]["Tables"]["orders"]["Row"];
 export type AvailabilityOverride = Database["public"]["Tables"]["availability_overrides"]["Row"];
-export type Waitlist = Database["public"]["Tables"]["waitlist"]["Row"];
+export type Lead = Database["public"]["Tables"]["leads"]["Row"];

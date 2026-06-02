@@ -90,12 +90,12 @@ create table availability_overrides (
   unique (shop_id, date)
 );
 
--- ---------- 사전 신청(대기자) ----------
--- 출시 전 랜딩 페이지에서 받는 베타 신청자. 비회원(anon)이 작성한다.
-create table waitlist (
+-- ---------- 리드(사전 신청) ----------
+-- 랜딩 페이지에서 받는 리드(잠재고객). 비회원(anon)이 작성한다.
+create table leads (
   id uuid primary key default uuid_generate_v4(),
   name text not null,                        -- 성함 / 가게 이름
-  phone text not null,                       -- 연락처
+  email text not null,                       -- 이메일 (연락용)
   insta text,                                -- SNS·판매 채널 (선택)
   created_at timestamptz default now()
 );
@@ -116,11 +116,11 @@ alter table shops enable row level security;
 alter table products enable row level security;
 alter table orders enable row level security;
 alter table availability_overrides enable row level security;
-alter table waitlist enable row level security;
+alter table leads enable row level security;
 
--- 사전 신청: 비회원 누구나 작성(insert)만 가능.
+-- 리드: 비회원 누구나 작성(insert)만 가능.
 -- 조회/수정/삭제 정책이 없으므로 anon 키로는 명단을 읽을 수 없다(개인정보 보호).
-create policy "anyone can join waitlist" on waitlist
+create policy "anyone can submit lead" on leads
   for insert to anon, authenticated with check (true);
 
 -- 사장님: 자기 shop row 만 읽기/수정

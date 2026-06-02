@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 
-import { submitWaitlist } from "@/app/actions";
+import { submitLead } from "@/app/actions";
 import styles from "@/app/page.module.css";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
-export function WaitlistForm() {
+export function LeadForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -18,9 +18,9 @@ export function WaitlistForm() {
     setErrorMsg("");
 
     try {
-      const result = await submitWaitlist({
+      const result = await submitLead({
         name: String(fd.get("name") ?? ""),
-        phone: String(fd.get("phone") ?? ""),
+        email: String(fd.get("email") ?? ""),
         insta: String(fd.get("insta") ?? ""),
       });
 
@@ -32,7 +32,7 @@ export function WaitlistForm() {
       }
     } catch (err) {
       // 서버 액션이 거부되거나 네트워크가 끊겨도 "신청 중…"에 멈추지 않도록 한다.
-      console.error("[waitlist] 제출 오류:", err);
+      console.error("[leads] 제출 오류:", err);
       setStatus("error");
       setErrorMsg("네트워크 상태를 확인하고 다시 시도해주세요.");
     }
@@ -41,8 +41,7 @@ export function WaitlistForm() {
   if (status === "success") {
     return (
       <div className={styles.wlSuccess}>
-        <div className={styles.big}>신청 완료됐어요! 🎂</div>
-        <p>오픈 준비가 되면 가장 먼저 연락드릴게요. 기다려 주셔서 감사해요.</p>
+        <div className={styles.big}>곧 연락드릴게요</div>
       </div>
     );
   }
@@ -60,12 +59,14 @@ export function WaitlistForm() {
         required
         disabled={submitting}
       />
-      <label htmlFor="phone">연락처</label>
+      <label htmlFor="email">이메일</label>
       <input
-        id="phone"
-        name="phone"
-        type="tel"
-        placeholder="010-0000-0000"
+        id="email"
+        name="email"
+        type="email"
+        inputMode="email"
+        autoComplete="email"
+        placeholder="orderletter@example.com"
         required
         disabled={submitting}
       />
