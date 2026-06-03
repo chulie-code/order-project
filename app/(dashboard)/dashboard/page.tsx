@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-import { LogoutButton } from "@/components/auth/logout-button";
 import { createClient } from "@/lib/supabase/server";
 
 export default async function DashboardPage() {
@@ -21,10 +20,7 @@ export default async function DashboardPage() {
 
   return (
     <main className="mx-auto max-w-2xl p-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-xl font-bold">대시보드</h1>
-        <LogoutButton />
-      </div>
+      <h1 className="text-xl font-bold">대시보드</h1>
 
       <div className="mt-4 rounded-lg border p-4">
         <p className="text-lg font-semibold">{shop.shop_name}</p>
