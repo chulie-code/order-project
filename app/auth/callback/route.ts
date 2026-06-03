@@ -8,9 +8,13 @@ export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url);
   const code = searchParams.get("code");
 
-  // next 는 우리 앱 내부 경로만 허용 (오픈 리다이렉트 방지)
+  // next 는 우리 앱 내부 경로만 허용 (오픈 리다이렉트 방지).
+  // '//'·'/\'(프로토콜-상대 URL)도 막아 외부 도메인 유도를 차단한다.
   const nextParam = searchParams.get("next") ?? "/dashboard";
-  const next = nextParam.startsWith("/") ? nextParam : "/dashboard";
+  const next =
+    nextParam.startsWith("/") && !nextParam.startsWith("//") && !nextParam.startsWith("/\\")
+      ? nextParam
+      : "/dashboard";
 
   if (code) {
     const supabase = createClient();
